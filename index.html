@@ -156,6 +156,14 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
 .dot.on{background:var(--y);transform:scale(1.35);}
 .dot.done{background:rgba(255,229,59,.35);}
 
+/* METRIC GRID */
+.metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:4px;}
+.metric-btn{padding:11px 14px;background:var(--card2);border:1px solid var(--border);color:var(--text);font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;text-align:left;cursor:pointer;transition:border-color .2s,background .2s;line-height:1.3;}
+.metric-btn:hover{border-color:rgba(255,229,59,.3);background:rgba(255,229,59,.04);}
+.metric-btn.active{border-color:rgba(255,229,59,.7);background:rgba(255,229,59,.08);color:var(--y);}
+.metric-btn-other{grid-column:span 2;text-align:center;color:var(--soft);}
+.metric-btn-other.active{color:var(--y);}
+
 /* SQUARE SOCIALS */
 .soc-squares{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 .soc-sq{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px;background:var(--card2);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:all .3s;position:relative;overflow:hidden;}
@@ -331,13 +339,14 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
   <div class="card active" id="s0">
     <div class="card-top-bar"></div>
     <div class="welcome-inner">
-      <h1 class="welcome-h" style="font-size:clamp(18px,3.5vw,28px);">Йо 👋 Це не звична форма — <span style="color:var(--y)">дивись відео перед стартом.</span></h1>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);padding:7px 14px;margin-bottom:16px;font-family:'Unbounded',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;color:#4ade80;">✓ ОПЛАТА ПРОЙШЛА УСПІШНО</div>
+      <h1 class="welcome-h" style="font-size:clamp(18px,3.5vw,26px);">Це форма перед консультацією — <span style="color:var(--y)">дивись відео перед стартом.</span></h1>
       <div class="time-badge">⏱ 3–5 ХВ &nbsp;·&nbsp; 7 ПИТАНЬ</div>
     </div>
     <!-- Відео привітання — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/djlCBROM8Iw?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/djlCBROM8Iw?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
     <div class="welcome-inner" style="padding-top:24px;">
@@ -371,7 +380,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
     <!-- Відео питання 2 — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/r1bKsoOBRoE?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/r1bKsoOBRoE?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
       
     </div>
@@ -409,7 +418,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
     <!-- Відео питання 2Б — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/2L2-RPTB17s?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/2L2-RPTB17s?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
       
     </div>
@@ -432,7 +441,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
     <!-- Відео питання 3 — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/5AoAcHPztCk?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/5AoAcHPztCk?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
       
     </div>
@@ -453,25 +462,34 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
   ══════════════════════════════════ -->
   <div class="card" id="s4">
     <div class="card-top-bar"></div>
-    <!-- Відео питання 4 — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/kAlNx4G16gY?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/kAlNx4G16gY?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
     <div class="card-body">
       <span class="q-tag" style="margin-top:0;">ПИТАННЯ 04 / 07</span>
       <div class="field-wrap" style="margin-top:12px;">
         <label class="field-label">Головний показник успіху *</label>
-        <input class="field" type="text" id="f-metric-main" placeholder="Напр: Підписників, клієнти на місяць, гроші..." oninput="validateS4()">
+        <div style="position:relative;">
+          <select class="field" id="f-metric-select" onchange="onMetricSelect(this)" style="appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:40px;">
+            <option value="">— Обери показник —</option>
+            <option value="Підписники">📈 Підписники</option>
+            <option value="Перегляди">👁 Перегляди</option>
+            <option value="Дохід з каналу">💰 Дохід з каналу</option>
+            <option value="Продажі / клієнти">🛍 Продажі / клієнти</option>
+            <option value="Охоплення">📣 Охоплення</option>
+            <option value="Впізнаваність">⭐ Впізнаваність</option>
+            <option value="Трафік на сайт">🌐 Трафік на сайт</option>
+            <option value="other">✏️ Інше...</option>
+          </select>
+          <div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--soft);">▾</div>
+        </div>
+        <input class="field" type="text" id="f-metric-main" placeholder="Введи свій показник..." style="display:none;margin-top:8px;" oninput="validateS4()">
       </div>
       <div class="field-wrap" style="margin-top:12px;">
         <label class="field-label">Числовий показник (дохід, перегляди, охоплення...) *</label>
         <input class="field" type="text" id="f-metric-num" placeholder="Напр: 50 000 переглядів / міс, €1000/міс..." oninput="validateS4()">
-      </div>
-      <div class="field-wrap" style="margin-top:12px;">
-        <label class="field-label">Щось що не підходить під ці рамки?</label>
-        <textarea class="field" id="f-success" placeholder="Додай більше інформації чи уточненя" style="min-height:90px;"></textarea>
       </div>
       <div class="btns">
         <button class="btn-fire" id="btn4" onclick="go('s5')" disabled>Далі →</button>
@@ -487,7 +505,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
     <!-- Відео питання 5 — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/PhWaeHqGxdM?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/PhWaeHqGxdM?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
     <div class="card-body">
@@ -542,7 +560,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
     <!-- Відео питання 7 — ЗАМІНИТИ ID -->
     <div class="vid-block">
       <div class="vid-frame">
-        <iframe src="https://www.youtube.com/embed/GM9MwHDMdzM?rel=0?rel=0&modestbranding=1&controls=1modestbranding=1?rel=0&modestbranding=1&controls=1controls=0?rel=0&modestbranding=1&controls=1showinfo=0?rel=0&modestbranding=1&controls=1iv_load_policy=3?rel=0&modestbranding=1&controls=1disablekb=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GM9MwHDMdzM?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
       </div>
       
     </div>
@@ -571,39 +589,12 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
       </div>
       <div class="review-blocks" id="reviewBlocks"></div>
       <div class="btns">
-        <button class="btn-fire" onclick="goToPayment()">Перейти до оплати 💳</button>
+        <button class="btn-fire" onclick="submitForm()">Все вірно, продовжити ✓</button>
         <button class="btn-ghost" onclick="goBack()">← Змінити</button>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════
-       STEP PAYMENT — ОПЛАТА (Stripe)
-  ══════════════════════════════════ -->
-  <div class="card" id="spayment">
-    <div class="card-top-bar"></div>
-    <div class="card-body">
-      <span class="q-tag" style="margin-top:0;">ОПЛАТА</span>
-      <div style="margin:14px 0 20px;">
-        <div style="font-family:'Unbounded',sans-serif;font-size:clamp(18px,3vw,22px);font-weight:900;line-height:1.2;letter-spacing:-.02em;">Залишився останній крок 💳</div>
-        <div style="font-size:14px;color:var(--soft);margin-top:8px;line-height:1.7;">Після оплати я отримаю твою анкету і зв'яжуся протягом 24 годин.</div>
-      </div>
-      <div class="payment-box">
-        <div class="payment-price">
-          <span class="price-label">КОНСУЛЬТАЦІЯ</span>
-          <span class="price-val">150 <span style="font-size:16px;color:var(--soft);">EUR</span></span>
-        </div>
-        <div id="stripe-container">
-          <button class="btn-fire" style="width:100%;margin-top:8px;justify-content:center;" onclick="payAndSubmit()">
-            Оплатити 🔒
-          </button>
-          <div style="font-size:11px;color:var(--soft);text-align:center;margin-top:10px;line-height:1.6;">
-            🔒 Безпечна оплата через Stripe<br>Visa / Mastercard / Apple Pay / Google Pay
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ══════════════════════════════════
        STEP FINAL
@@ -613,7 +604,6 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
     <div class="card-body">
       <h2 class="final-h">Все отримав, дякую 🔥</h2>
       <p class="final-p" style="margin-top:10px;font-size:15px;color:var(--text);"><span id="finalName" style="color:var(--y)"></span>, я скоро перегляну твої відповіді і зв'яжуся особисто щоб забронювати зручний час 📅</p>
-      <p class="final-p">Відповідь буде на соцмережу яку ти надіслав протягом <strong style="color:var(--y)">24 годин.</strong></p>
 
       <!-- СОЦМЕРЕЖІ з анімацією -->
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
@@ -777,9 +767,11 @@ function validateChannel(){
 }
 
 function validateS4(){
-  const m = document.getElementById('f-metric-main').value.trim();
+  const sel = document.getElementById('f-metric-select');
+  const customField = document.getElementById('f-metric-main');
+  const hasMetric = sel.value && (sel.value !== 'other' || customField.value.trim().length >= 2);
   const n = document.getElementById('f-metric-num').value.trim();
-  document.getElementById('btn4').disabled = !(m.length >= 2 && n.length >= 2);
+  document.getElementById('btn4').disabled = !(hasMetric && n.length >= 2);
 }
 
 function pickSoc(btn){
@@ -854,7 +846,7 @@ function getData(){
     channel:     hasChannel ? (document.getElementById('f-channel').value.trim() || '—') : null,
     niche:       !hasChannel ? (document.getElementById('f-niche').value.trim()   || '—') : null,
     problems:    document.getElementById('f-problems').value.trim()    || '—',
-    success:     document.getElementById('f-success').value.trim()     || '—',
+    success:     '—',
     metricMain:  document.getElementById('f-metric-main').value.trim() || '—',
     metricNum:   document.getElementById('f-metric-num').value.trim()  || '—',
     job:         document.getElementById('f-job').value.trim()         || '—',
@@ -887,10 +879,37 @@ function buildReview(){
     </div>`).join('');
 }
 
+const METRIC_PLACEHOLDERS = {
+  'Підписники':        'Напр: зараз 500, хочу 5 000 за 3 місяці',
+  'Перегляди':         'Напр: зараз 2 000 / міс, хочу 50 000 / міс',
+  'Дохід з каналу':    'Напр: зараз €0, хочу €1 000 / міс',
+  'Продажі / клієнти': 'Напр: зараз 2 клієнти / міс, хочу 10',
+  'Охоплення':         'Напр: зараз 1 000 охоплення, хочу 20 000',
+  'Впізнаваність':     'Напр: зараз 1 людина впізнає на вулиці, хочу щоб впізнавали щодня',
+  'Трафік на сайт':    'Напр: зараз 300 відвідувачів / міс, хочу 5 000',
+  'other':             'Опиши свій показник і що вважаєш успіхом...',
+};
+
+function onMetricSelect(sel){
+  const field = document.getElementById('f-metric-main');
+  const numField = document.getElementById('f-metric-num');
+  if(sel.value === 'other'){
+    field.style.display = 'block';
+    field.value = '';
+    field.focus();
+  } else {
+    field.style.display = 'none';
+    field.value = sel.value;
+  }
+  numField.placeholder = METRIC_PLACEHOLDERS[sel.value] || 'Напр: 50 000 переглядів / міс, €1000/міс...';
+  validateS4();
+}
+
+function pickMetric(btn){ /* legacy — not used */ }
+function pickMetricOther(){ /* legacy — not used */ }
+
 function goToPayment(){
-  hist.push(cur);
-  cur = 'spayment';
-  showCard('spayment');
+  // видалено — більше не потрібно
 }
 
 const STRIPE_URL = 'https://buy.stripe.com/28E7sE6Jr3oEcZB0em38402';
