@@ -687,26 +687,34 @@ function updateReadiness(stepId){
   if(lineEl) setTimeout(() => { lineEl.style.width = pct + '%'; }, 60);
 }
 
+function stopAllVideos(exceptId){
+  document.querySelectorAll('.card').forEach(card => {
+    if(card.id === exceptId) return;
+    const iframe = card.querySelector('iframe');
+    if(iframe && iframe.src.includes('youtube')){
+      iframe.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+    }
+  });
+}
+
 function showCard(id){
   document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
   const el = document.getElementById(id);
   if(el) el.classList.add('active');
 
-  // Зупиняємо всі відео на інших картках
-  document.querySelectorAll('.card:not(#'+id+') iframe').forEach(iframe => {
-    const src = iframe.src;
-    if(src && src.includes('youtube')) {
-      iframe.src = iframe.src; // reset = зупинка
-    }
-  });
+  // Зупиняємо всі відео крім поточного
+  stopAllVideos(id);
 
   // Запускаємо відео на активній картці
   const activeIframe = el && el.querySelector('iframe');
   if(activeIframe && activeIframe.src.includes('youtube')) {
-    // Додаємо autoplay до src щоб запустилось
     const url = new URL(activeIframe.src);
     url.searchParams.set('autoplay', '1');
-    activeIframe.src = url.toString();
+    if(activeIframe.src !== url.toString()) {
+      activeIframe.src = url.toString();
+    } else {
+      activeIframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }
   }
 
   // геймфікація готовності
