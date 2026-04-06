@@ -331,7 +331,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
   <div class="card active" id="s0">
     <div class="card-top-bar"></div>
     <div class="welcome-inner">
-      <h1 class="welcome-h">Йо 👋 Це міні-сайт для консультацій від <span style="color:var(--y)">Тепленка Михайла.</span></h1>
+      <h1 class="welcome-h" style="font-size:clamp(18px,3.5vw,28px);">Йо 👋 Це не звична форма — <span style="color:var(--y)">дивись відео перед стартом.</span></h1>
       <div class="time-badge">⏱ 3–5 ХВ &nbsp;·&nbsp; 7 ПИТАНЬ</div>
     </div>
     <!-- Відео привітання — ЗАМІНИТИ ID -->
@@ -594,14 +594,7 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
           <span class="price-val">150 <span style="font-size:16px;color:var(--soft);">EUR</span></span>
         </div>
         <div id="stripe-container">
-          <!-- Stripe Payment Element буде вставлено сюди -->
-          <!-- ІНСТРУКЦІЯ:
-            1. Підключи Stripe.js: <script src="https://js.stripe.com/v3/"></script>
-            2. Замінити STRIPE_PUBLISHABLE_KEY на свій ключ
-            3. Замінити PAYMENT_INTENT_CLIENT_SECRET на client_secret з твого бекенду
-            4. Після успішної оплати викликати: window.stripeSuccess()
-          -->
-          <button class="btn-fire" style="width:100%;margin-top:8px;justify-content:center;" onclick="stripeSuccess()">
+          <button class="btn-fire" style="width:100%;margin-top:8px;justify-content:center;" onclick="payAndSubmit()">
             Оплатити 🔒
           </button>
           <div style="font-size:11px;color:var(--soft);text-align:center;margin-top:10px;line-height:1.6;">
@@ -644,21 +637,19 @@ textarea.field{resize:vertical;min-height:120px;line-height:1.65;}
         </div>
       </div>
 
-      <div class="btns" style="margin-top:22px;">
+      <div class="btns" style="margin-top:22px;justify-content:center;">
         <button class="btn-fire" id="btnThank" onclick="thankYou()">До зустрічі 👊</button>
       </div>
     </div>
   </div>
 
-  <!-- DOTS + READINESS -->
-  <div class="dots-wrap" id="dotsWrap"></div>
-  <div id="readyWidget" style="display:none;width:100%;max-width:660px;margin-top:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding:0 2px;">
-      <span style="font-family:'Unbounded',sans-serif;font-size:8px;font-weight:700;letter-spacing:.18em;color:rgba(255,229,59,.45);text-transform:uppercase;">ГОТОВНІСТЬ</span>
-      <span id="readyPct" style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:900;color:var(--y);">0%</span>
-    </div>
-    <div style="height:3px;background:rgba(255,255,255,.07);overflow:hidden;">
-      <div id="readyFill" style="height:100%;background:linear-gradient(90deg,#FF2D2D,#FF5C2E,#FFE53B);width:0%;transition:width .7s cubic-bezier(.4,0,.2,1);"></div>
+  <!-- ПРОГРЕС + ВІДСОТОК -->
+  <div id="dotsWrap" style="display:none;width:100%;max-width:660px;margin-top:20px;padding:0 20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="flex:1;height:3px;background:rgba(255,255,255,.07);overflow:hidden;">
+        <div id="progressLine" style="height:100%;width:0%;background:linear-gradient(90deg,#FF2D2D,#FF5C2E,#FFE53B);transition:width .6s cubic-bezier(.4,0,.2,1);"></div>
+      </div>
+      <span id="readyPct" style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:900;color:var(--y);letter-spacing:.04em;flex-shrink:0;">0%</span>
     </div>
   </div>
 </div>
@@ -684,30 +675,16 @@ const STEP_PROGRESS = {
   sreview:7, spayment:7, sfinal:7
 };
 
-const READY_MSGS = [
-  { min:0,  emoji:'👋', text:'Починаємо! Пройди всі 7 питань — і я буду знати як тобі допомогти.' },
-  { min:14, emoji:'🔥', text:'<strong>+14% — старт!</strong> Вже краще ніж нічого. Ще трохи!' },
-  { min:28, emoji:'💪', text:'<strong>Чверть шляху!</strong> Ти вже ближче ніж більшість. Тримай темп.' },
-  { min:42, emoji:'⚡', text:'<strong>42% — непогано!</strong> Ти на половині шляху до крутої консультації.' },
-  { min:57, emoji:'🚀', text:'<strong>Більше половини!</strong> Зараз важливі питання — відповідай детально.' },
-  { min:71, emoji:'🎯', text:'<strong>Майже там!</strong> Ще 2 питання і ти готовий до консультації.' },
-  { min:85, emoji:'🏆', text:'<strong>Фінальний крок!</strong> Ще одне питання і ми готові до роботи.' },
-  { min:99, emoji:'✅', text:'<strong>100% готовий!</strong> Чудово заповнив — консультація буде максимально ефективною.' },
-];
+const READY_MSGS = [];
 
 function updateReadiness(stepId){
   const steps = STEP_PROGRESS[stepId] ?? 0;
   const pct = Math.min(Math.round((steps / 7) * 100), 100);
-
-  const widget = document.getElementById('readyWidget');
-  const pctEl  = document.getElementById('readyPct');
-  const fillEl = document.getElementById('readyFill');
-
-  const show = stepId !== 's0';
-  widget.style.display = show ? 'block' : 'none';
-
-  pctEl.textContent = pct + '%';
-  setTimeout(() => { fillEl.style.width = pct + '%'; }, 60);
+  const pctEl = document.getElementById('readyPct');
+  const lineEl = document.getElementById('progressLine');
+  const show = stepId !== 's0' && stepId !== 'sfinal' && stepId !== 'sreview';
+  if(pctEl) pctEl.textContent = pct + '%';
+  if(lineEl) setTimeout(() => { lineEl.style.width = pct + '%'; }, 60);
 }
 
 function showCard(id){
@@ -731,18 +708,8 @@ function showCard(id){
 
 function updateDots(id){
   const wrap = document.getElementById('dotsWrap');
-  const widget = document.getElementById('readyWidget');
   const hide = id==='s0'||id==='sfinal'||id==='sreview';
-  if(hide){
-    wrap.innerHTML='';
-    if(widget) widget.style.display='none';
-    return;
-  }
-  wrap.innerHTML = Q_STEPS.map((s,i)=>{
-    const cur_idx = Q_STEPS.indexOf(id);
-    const cls = i < cur_idx ? 'done' : i===cur_idx ? 'on' : '';
-    return `<div class="dot ${cls}"></div>`;
-  }).join('');
+  wrap.style.display = hide ? 'none' : 'block';
 }
 
 function go(target){
@@ -901,11 +868,14 @@ function goToPayment(){
   showCard('spayment');
 }
 
-// Викликається після успішної оплати Stripe
-// Підключи Stripe і після підтвердження оплати виклич: window.stripeSuccess()
-window.stripeSuccess = async function(){
+const STRIPE_URL = 'https://buy.stripe.com/28E7sE6Jr3oEcZB0em38402';
+
+async function payAndSubmit(){
+  // Відправляємо форму в Telegram
   await submitForm();
-};
+  // Відкриваємо Stripe в новій вкладці
+  window.open(STRIPE_URL, '_blank');
+}
 
 // ══ SUBMIT ══
 async function submitForm(){
@@ -941,27 +911,26 @@ ${d.job !== '—' ? '📝 Додатково про успіх: '+d.job : ''}
   hist.push(cur);
   cur = 'sfinal';
   showCard('sfinal');
+  setTimeout(startSocPulse, 400);
+}
+
+function startSocPulse(){
+  const ids = ['sq-tg','sq-yt','sq-ig'];
+  let i = 0;
+  function pulseNext(){
+    ids.forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('pulse-active'); });
+    const el = document.getElementById(ids[i]);
+    if(el) el.classList.add('pulse-active');
+    i = (i + 1) % ids.length;
+  }
+  pulseNext();
+  setInterval(pulseNext, 1400);
 }
 
 function thankYou(){
   document.getElementById('btnThank').disabled = true;
   document.getElementById('btnThank').textContent = '👊';
-
-  // Запускаємо пульсацію соцмереж по черзі
-  const ids = ['sq-tg','sq-yt','sq-ig'];
-  let i = 0;
-  function pulseNext(){
-    // знімаємо з попереднього
-    ids.forEach(id => document.getElementById(id).classList.remove('pulse-active'));
-    const el = document.getElementById(ids[i]);
-    el.classList.add('pulse-active');
-    i = (i + 1) % ids.length;
-  }
-  pulseNext();
-  setInterval(pulseNext, 1400);
-
-  // Закриваємо вкладку через 6 секунд
-  setTimeout(() => { window.close(); }, 6000);
+  setTimeout(() => { window.close(); }, 1500);
 }
 
 // ══ INIT ══
